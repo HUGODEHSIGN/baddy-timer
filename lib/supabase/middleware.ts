@@ -2,7 +2,6 @@ import { Database } from '@/types/supabase';
 import { createServerClient } from '@supabase/ssr';
 import { User } from '@supabase/supabase-js';
 import { NextResponse, type NextRequest } from 'next/server';
-import invariant from 'tiny-invariant';
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -47,18 +46,16 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  invariant(user, 'Invalid User');
-
-  console.log(user);
+  if (!user) {
+    return supabaseResponse;
+  }
 
   const { data: primaryPlayer } = await supabase
     .from('player')
     .select()
-    .eq('user_id', user.id)
+    .eq('user_id', user?.id)
     .eq('primary', true)
     .maybeSingle();
-
-  console.log(primaryPlayer);
 
   if (validatePlayer(primaryPlayer, request)) {
     const url = request.nextUrl.clone();

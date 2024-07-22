@@ -1,30 +1,29 @@
 'use server';
 
-import { primaryPlayerSchema } from '@/app/get-started/player/schemas/PrimaryPlayer';
+import { adminSchema } from '@/app/get-started/admin/schemas/adminSchema';
 import { createClient } from '@/lib/supabase/server';
-import { FormState } from '@/types/formState';
+import { FormResponseState } from '@/types/formState';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+
 import { z } from 'zod';
 
-export async function insertPrimaryPlayer(
-  prevState: FormState | null,
+export async function insertAdmin(
+  prevState: FormResponseState | null,
   data: FormData
-): Promise<FormState> {
+): Promise<FormResponseState> {
   try {
     const submission = {
       firstName: data.get('firstName') as string,
       lastName: data.get('lastName') as string,
     };
 
-    const { firstName, lastName } = primaryPlayerSchema.parse(submission);
-
-    console.log(firstName, lastName);
+    const { firstName, lastName } = adminSchema.parse(submission);
 
     const supabase = createClient();
     await supabase
-      .from('player')
-      .insert({ first_name: firstName, last_name: lastName, primary: true })
+      .from('admin')
+      .insert({ first_name: firstName, last_name: lastName })
       .throwOnError();
   } catch (error) {
     console.error(error);

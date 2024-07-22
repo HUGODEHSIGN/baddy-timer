@@ -1,10 +1,10 @@
 'use client';
 
-import { insertPrimaryPlayer } from '@/app/get-started/player/actions/insertPrimaryPlayerAction';
+import { insertAdmin } from '@/app/get-started/admin/actions/insertAdminAction';
 import {
-  PrimaryPlayer,
-  primaryPlayerSchema,
-} from '@/app/get-started/player/schemas/primaryPlayerSchema';
+  Admin,
+  adminSchema,
+} from '@/app/get-started/admin/schemas/adminSchema';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -20,17 +20,17 @@ import { FormResponseState } from '@/types/formState';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useFormState } from 'react-dom';
-
 import { FieldPath, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-export default function InsertPrimaryPlayerForm() {
+export default function InsertAdminForm() {
   const [state, submitAction] = useFormState<FormResponseState, FormData>(
-    insertPrimaryPlayer,
+    insertAdmin,
     null
   );
-  const form = useForm<PrimaryPlayer>({
-    resolver: zodResolver(primaryPlayerSchema),
+
+  const form = useForm<Admin>({
+    resolver: zodResolver(adminSchema),
     mode: 'all',
     defaultValues: {
       firstName: '',
@@ -50,7 +50,7 @@ export default function InsertPrimaryPlayerForm() {
 
     if (state.status === 'error') {
       state.errors?.forEach((error) => {
-        setError(error.path as FieldPath<PrimaryPlayer>, {
+        setError(error.path as FieldPath<Admin>, {
           message: error.message,
         });
       });
@@ -59,8 +59,7 @@ export default function InsertPrimaryPlayerForm() {
     if (state.status === 'success') {
       toast.success(state.message);
     }
-    console.log(state);
-  }, [state, setError]);
+  });
 
   return (
     <>
