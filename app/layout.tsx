@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-import { Nunito as FontSans } from 'next/font/google';
+import { Outfit as FontSans } from 'next/font/google';
 import './globals.css';
 
+import { Toaster } from '@/components/ui/sonner';
 import { cn } from '@/lib/utils';
 
 const fontSans = FontSans({
@@ -27,6 +28,7 @@ export default function RootLayout({
           fontSans.variable
         )}>
         {children}
+        <Toaster richColors />
       </body>
     </html>
   );

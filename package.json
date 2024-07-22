@@ -3,25 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "sb:start": "npx supabase start -x vector",
-    "sb:types": "npx supabase gen types --lang=typescript --project-id \"ymklxxvpleuixarxlbni\" --schema public > types/supabase.ts"
+    "sb:stop": "npx supabase stop",
+    "sb:types": "npx supabase gen types --lang=typescript --local > types/supabase.ts"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
+    "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-toast": "^1.2.1",
     "@supabase/ssr": "^0.4.0",
     "@supabase/supabase-js": "^2.44.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.408.0",
     "next": "14.2.5",
+    "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.52.1",
+    "sonner": "^1.5.0",
     "tailwind-merge": "^2.4.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "tiny-invariant": "^1.3.3",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",
