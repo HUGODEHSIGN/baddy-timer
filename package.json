@@ -7,9 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "sb:start": "npx supabase start -x vector",
-    "sb:stop": "npx supabase stop",
-    "sb:types": "npx supabase gen types --lang=typescript --local > types/supabase.ts"
+    "types": "npx supabase gen types --lang=typescript --project-id ymklxxvpleuixarxlbni --schema public > types/supabase.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
