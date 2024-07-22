@@ -12,4 +12,4 @@ export type FormErrorState = {
   }[];
 };
 
-export type FormState = FormSuccessState | FormErrorState | null;
+export type FormResponseState = FormSuccessState | FormErrorState | null;
