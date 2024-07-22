@@ -1,4 +1,4 @@
-import { login } from '@/app/login/actions';
+import { signup } from '@/app/signup/actions';
 
 export default function LoginPage() {
   return (
@@ -17,7 +17,8 @@ export default function LoginPage() {
         type="password"
         required
       />
-      <button formAction={login}>Log in</button>
+
+      <button formAction={signup}>Sign up</button>
     </form>
   );
 }
